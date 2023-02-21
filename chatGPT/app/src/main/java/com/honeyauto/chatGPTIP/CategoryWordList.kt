@@ -2,6 +2,7 @@ package com.honeyauto.chatGPTIP
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,7 @@ class CategoryWordList : Fragment() {
         vWordRecycler.adapter = adapter
 
 
+        Log.d("Globaltest", MyGlobals.instance?.currentFragment.toString())
 
         return binding.root
     }

@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 @SuppressLint("NotifyDataSetChanged")
 class MyAdapter : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
-    var fireStore = FirebaseFirestore.getInstance()
+    var fireStore = Firebase.firestore
     private val categoriList = ArrayList<WordModel>()
+
     init {
         fireStore.collection("catagori")
             .addSnapshotListener { querySnapshot, _ ->
@@ -38,11 +40,13 @@ class MyAdapter : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//        val item = telephoneBook[position]
-        holder.buttonView.text = categoriList[position].keyword
+        when(MyGlobals.instance!!.checkLanguage) {
+            "kr" -> { holder.buttonView.text = categoriList[position].krkeyword }
+            "en" -> { holder.buttonView.text = categoriList[position].enkeyword }
+        }
         holder.buttonView.setOnClickListener {
             val action = WordCategoryDialogDirections.actionWordCategoryDialogToCategoryWordList2(
-                categoriword = categoriList[position].keyword.toString()
+                categoriword = categoriList[position].enkeyword.toString()
             )
             holder.itemView.findNavController().navigate(action)
         }

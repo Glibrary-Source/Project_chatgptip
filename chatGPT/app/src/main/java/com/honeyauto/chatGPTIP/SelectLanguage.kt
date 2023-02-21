@@ -1,6 +1,7 @@
 package com.honeyauto.chatGPTIP
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,8 @@ class SelectLanguage : Fragment() {
             MyGlobals.instance?.checkLanguage = "en"
             findNavController().navigate(action)
         }
+
+        Log.d("Globaltest", MyGlobals.instance?.currentFragment.toString())
 
         return binding.root
     }

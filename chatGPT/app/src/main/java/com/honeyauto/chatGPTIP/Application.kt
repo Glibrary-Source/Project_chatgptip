@@ -1,5 +1,7 @@
 package com.honeyauto.chatGPTIP
 
+import com.google.firebase.ktx.Firebase
+
 class MyGlobals {
     var checkLanguage: String? = null
     var currentFragment: String? = null

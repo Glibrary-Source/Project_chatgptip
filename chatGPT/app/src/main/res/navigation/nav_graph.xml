@@ -14,9 +14,6 @@
         <argument
             android:name="language"
             app:argType="string" />
-        <action
-            android:id="@+id/action_wordCategoryDialog_to_selectLanguage"
-            app:destination="@id/selectLanguage" />
     </fragment>
     <fragment
         android:id="@+id/categoryWordList"
@@ -25,9 +22,6 @@
         <argument
             android:name="categoriword"
             app:argType="string" />
-        <action
-            android:id="@+id/action_categoryWordList_to_selectLanguage"
-            app:destination="@id/selectLanguage" />
     </fragment>
     <fragment
         android:id="@+id/selectLanguage"
@@ -37,8 +31,5 @@
         <action
             android:id="@+id/action_selectLanguage_to_wordCategoryDialog"
             app:destination="@id/wordCategoryDialog" />
-        <action
-            android:id="@+id/action_selectLanguage_self"
-            app:destination="@id/selectLanguage" />
-    </fragment>
+    </fragment><action android:id="@+id/action_global_selectLanguage" app:destination="@id/selectLanguage"/>
 </navigation>

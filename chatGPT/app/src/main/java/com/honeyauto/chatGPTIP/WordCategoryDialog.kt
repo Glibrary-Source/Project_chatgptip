@@ -34,7 +34,7 @@ class WordCategoryDialog : Fragment() {
         rcView.adapter = adapter
         rcView.layoutManager = GridLayoutManager(requireContext(),2)
 
-        Log.d("testLog", "Asdascazcxzc")
+        Log.d("Globaltest", MyGlobals.instance?.currentFragment.toString())
 
         return binding.root
     }

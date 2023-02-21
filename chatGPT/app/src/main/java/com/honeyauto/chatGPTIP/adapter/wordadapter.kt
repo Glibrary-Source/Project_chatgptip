@@ -13,13 +13,15 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.honeyauto.chatGPTIP.*
 
 
 @SuppressLint("NotifyDataSetChanged")
 class WordListAdapter(private val keyWord: String) : RecyclerView.Adapter<WordListAdapter.WordListViewHolder>() {
 
-    private var fireStore = FirebaseFirestore.getInstance()
+    private val fireStore = Firebase.firestore
     var wordList: ArrayList<WordModel> = arrayListOf()
     private var keyWordList = mutableListOf<String>()
 
@@ -31,7 +33,7 @@ class WordListAdapter(private val keyWord: String) : RecyclerView.Adapter<WordLi
 
                 for (snapshot in querySnapshot!!.documents) {
                     val item = snapshot.toObject(WordModel::class.java)
-                    if(item?.keyword == keyWord) {
+                    if(item?.enkeyword == keyWord) {
                         when(MyGlobals.instance!!.checkLanguage) {
                             "kr" -> { keyWordList = item.krsentence as MutableList<String> }
                             "en" -> { keyWordList = item.ensentence as MutableList<String> }
@@ -55,7 +57,6 @@ class WordListAdapter(private val keyWord: String) : RecyclerView.Adapter<WordLi
     }
 
     override fun onBindViewHolder(holder: WordListViewHolder, position: Int) {
-//        val item = data[position]
         holder.wordButtonView.text = keyWordList[position]
         holder.wordButtonView.setOnClickListener {
             val clipboardManager = holder.clipboard
@@ -74,4 +75,5 @@ class WordListAdapter(private val keyWord: String) : RecyclerView.Adapter<WordLi
     override fun getItemCount(): Int {
         return keyWordList.size
     }
+
 }
