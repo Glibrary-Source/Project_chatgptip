@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">chatGPTIP</string>
+    <string name="categori">Catagori</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="selectLanguage">Select Language</string>
+    <string name="kr">한국어</string>
+    <string name="en">English</string>
+    <string name="kr_copy">복사되었습니다</string>
+    <string name="en_copy">Copy</string>
+</resources>

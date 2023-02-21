@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/selectLanguage">
+    <fragment
+        android:id="@+id/wordCategoryDialog"
+        android:name="com.honeyauto.chatGPTIP.WordCategoryDialog"
+        android:label="WordCategoryDialog" >
+        <action
+            android:id="@+id/action_wordCategoryDialog_to_categoryWordList2"
+            app:destination="@id/categoryWordList" />
+        <argument
+            android:name="language"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_wordCategoryDialog_to_selectLanguage"
+            app:destination="@id/selectLanguage" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryWordList"
+        android:name="com.honeyauto.chatGPTIP.CategoryWordList"
+        android:label="CategoryWordList" >
+        <argument
+            android:name="categoriword"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_categoryWordList_to_selectLanguage"
+            app:destination="@id/selectLanguage" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectLanguage"
+        android:name="com.honeyauto.chatGPTIP.SelectLanguage"
+        android:label="fragment_select_language"
+        tools:layout="@layout/fragment_select_language" >
+        <action
+            android:id="@+id/action_selectLanguage_to_wordCategoryDialog"
+            app:destination="@id/wordCategoryDialog" />
+        <action
+            android:id="@+id/action_selectLanguage_self"
+            app:destination="@id/selectLanguage" />
+    </fragment>
+</navigation>

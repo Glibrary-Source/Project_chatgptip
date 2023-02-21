@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "547810566625",
+    "project_id": "project-chatgptip",
+    "storage_bucket": "project-chatgptip.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547810566625:android:06b4d29b4c7482114ff2a0",
+        "android_client_info": {
+          "package_name": "com.honeyauto.chatGPTIP"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547810566625-lodungigp0h7ob5e6shl81r5i0dkotdj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.honeyauto.chatGPTIP",
+            "certificate_hash": "81085ced6952cc4860036b0070940c7b32330902"
+          }
+        },
+        {
+          "client_id": "547810566625-0sh3o6bbe4mvtba678t2scru66ooea01.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrMPtfM2JgPq27SWo2Cs3KQ8aAYIiTyHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547810566625-0sh3o6bbe4mvtba678t2scru66ooea01.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547810566625:android:28d0a297e16e35e14ff2a0",
+        "android_client_info": {
+          "package_name": "com.honeyauto.chatgpt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547810566625-0sh3o6bbe4mvtba678t2scru66ooea01.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrMPtfM2JgPq27SWo2Cs3KQ8aAYIiTyHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547810566625-0sh3o6bbe4mvtba678t2scru66ooea01.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
