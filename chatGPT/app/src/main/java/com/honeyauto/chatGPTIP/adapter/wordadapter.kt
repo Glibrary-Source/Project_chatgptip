@@ -1,23 +1,25 @@
 package com.honeyauto.chatGPTIP.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.honeyauto.chatGPTIP.*
 import com.honeyauto.chatGPTIP.model.DetailWordModel
 
+
 @SuppressLint("NotifyDataSetChanged")
-class WordListAdapter(keyword: String, detailModel: DetailWordModel) : RecyclerView.Adapter<WordListAdapter.WordListViewHolder>() {
+class WordListAdapter(keyword: String, detailModel: DetailWordModel, context: Context) : RecyclerView.Adapter<WordListAdapter.WordListViewHolder>() {
 
     var sentence : List<String>
+    var mContext = context
 
     init {
         sentence = try{ detailModel.categorylist!!["detail${MyGlobals.instance!!.checkLanguage}"]!![MyGlobals.instance!!.middleKeyword]!![keyword]!!.toList() }
@@ -42,15 +44,7 @@ class WordListAdapter(keyword: String, detailModel: DetailWordModel) : RecyclerV
             val clipboardManager = holder.clipboard
             val clipData = ClipData.newPlainText("copyText", holder.wordButtonView.text)
             clipboardManager.setPrimaryClip(clipData)
-
-            Toast.makeText(holder.itemView.context,
-                if(MyGlobals.instance!!.checkLanguage == "kr"){"복사되었습니다"}else{"Copy"}
-                , Toast.LENGTH_SHORT).show()
-
-            it.context.startActivity(
-                Intent(it.context, MainActivity::class.java)
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT)
-            )
+            (mContext as Activity).finish()
         }
     }
 

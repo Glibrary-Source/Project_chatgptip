@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
     private var mInterstitialAd: InterstitialAd? = null
     private val TAG = "testAD"
     private var count = 1
-    private val db = Firebase.firestore
 
     private lateinit var webView: WebView
     private lateinit var mAdView: AdView
@@ -44,29 +43,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-
-        //언어선택 관련
-        db.collection("languagelist")
-            .get()
-            .addOnSuccessListener { result ->
-                val categoriList = ArrayList<LanguageWordModel>()
-                for (snapshot in result.documents) {
-                    val item = snapshot.toObject(LanguageWordModel::class.java)
-                    categoriList.add(item!!)
-                    MyGlobals.instance!!.languageList = categoriList[0].languagelist
-                    MyGlobals.instance!!.buttontext = categoriList[0].buttontext
-                }
-            }
-
-        //카테고리 불러오기
-        db.collection("detailcategory").document("detailcategorylist")
-            .get()
-            .addOnCompleteListener {
-                if(it.isSuccessful) {
-                    MyGlobals.instance!!.detailModel = it.result.toObject(DetailWordModel::class.java)
-                }
-            }
 
         //광고
         MobileAds.initialize(this) {}
@@ -114,12 +90,6 @@ class MainActivity : AppCompatActivity() {
             settings.javaScriptEnabled = true
         }
 
-        //해당 국가 지역 코드 얻기위해서
-        val locale: Locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            applicationContext.resources.configuration.locales[0]
-        } else {
-            applicationContext.resources.configuration.locale
-        }
         //agent 바꿔서 구글로그인 가능하게
         webView.settings.userAgentString = System.getProperty("http.agent")
         webView.loadUrl("https://chat.openai.com/chat")
@@ -127,11 +97,12 @@ class MainActivity : AppCompatActivity() {
         if (webView.url == "https://chat.openai.com/auth/login") {
             Toast.makeText(this,
                 try {
-                    when (locale.country) {
+                    when (MyGlobals.instance?.localCountry?.country) {
                         "KR" -> { "Chat gpt 서버 수용량이 다찼거나 로그인이 필요합니다" }
                         "US" -> { "Chat gpt server full or login required" }
                         "JP" -> { "チャットgptサーバー容量が不足しているかログインが必要です" }
                         "DE" -> { "Chat-GPT-Server voll oder Anmeldung erforderlich"}
+                        null -> { "Chat gpt server full or login required"}
                         else -> { "Chat gpt server full or login required" }
                     }
                 } catch (e: Exception) {

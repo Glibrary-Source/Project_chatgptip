@@ -2,8 +2,13 @@ package com.honeyauto.chatGPTIP
 
 
 import com.honeyauto.chatGPTIP.model.DetailWordModel
+import java.util.*
 
 class MyGlobals {
+
+    //국가코드 얻기위한 국가 위치
+    var localCountry: Locale? = null
+
     //categoryActivity에서 해당 밸류 있으면 바로 worddialog로 넘어감
     var checkLanguage: String? = null
     //언어 선택에서만사용

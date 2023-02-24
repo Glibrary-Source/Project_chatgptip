@@ -37,19 +37,14 @@ class CategoryActivity : AppCompatActivity() {
         }
 
         //어떤 언어가 효과적인지 설명하는 텍스트뷰에 현제 나라위치 가져와서 번역해줌
-        val locale: Locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            applicationContext.resources.configuration.locales[0]
-        } else {
-            applicationContext.resources.configuration.locale
-        }
-
         findViewById<TextView>(R.id.tv_example_effect).text =
             try {
-                when (locale.country) {
+                when (MyGlobals.instance?.localCountry?.country) {
                     "KR" -> { "영문 일때 가장 효과적입니다" }
                     "US" -> { "The best effect when used in English" }
                     "JP" -> { "えいご いちばんこ うかてき" }
                     "DE" -> { "Am effektivsten auf Englisch"}
+                    null -> { "The best effect when used in English" }
                     else -> { "The best effect when used in English" }
                 }
             } catch (e: Exception) {

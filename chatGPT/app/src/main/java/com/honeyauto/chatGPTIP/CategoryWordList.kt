@@ -1,6 +1,7 @@
 package com.honeyauto.chatGPTIP
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,16 @@ class CategoryWordList : Fragment() {
     private lateinit var binding: FragmentCategoryWordListBinding
     private val keyWord by navArgs<CategoryWordListArgs>()
 
+    private lateinit var mContext: Context
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is CategoryActivity) {
+            mContext = context
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,7 +45,7 @@ class CategoryWordList : Fragment() {
         binding = FragmentCategoryWordListBinding.inflate(inflater)
 
         val vWordRecycler = binding.rcWordlist
-        val adapter = WordListAdapter(keyWord.sentencekeyword, MyGlobals.instance?.detailModel!!)
+        val adapter = WordListAdapter(keyWord.sentencekeyword, MyGlobals.instance?.detailModel!!, mContext)
         vWordRecycler.layoutManager = LinearLayoutManager(requireContext())
         vWordRecycler.adapter = adapter
 
