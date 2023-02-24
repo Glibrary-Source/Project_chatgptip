@@ -18,7 +18,16 @@
         <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/catagori_item.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/fragment_category_word_list.xml" value="0.30217831813576496" />
+        <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/fragment_select_language.xml" value="0.30217831813576496" />
+        <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/fragment_word_category_detail.xml" value="0.30217831813576496" />
         <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/fragment_word_category_dialog.xml" value="0.2991388044579534" />
+        <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/gpt_test_dialog.xml" value="0.3221884498480243" />
+        <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/item_category.xml" value="0.32168186423505574" />
+        <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/item_detailword.xml" value="0.25050658561296857" />
+        <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/item_dialogcategory.xml" value="0.2991388044579534" />
+        <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/item_selectlanguage.xml" value="0.2510131712259372" />
+        <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/item_wordlist.xml" value="0.2510131712259372" />
+        <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/temp.xml" value="0.32168186423505574" />
         <entry key="..\:/Users/qn651/androidStudioProject/chatGPTIP/chatGPT/app/src/main/res/layout/word_item.xml" value="0.2991388044579534" />
         <entry key="..\:/src/flutterwork/chatGPT/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.196" />
         <entry key="..\:/src/flutterwork/chatGPT/app/src/main/res/drawable-v24/round_image.xml" value="0.184" />

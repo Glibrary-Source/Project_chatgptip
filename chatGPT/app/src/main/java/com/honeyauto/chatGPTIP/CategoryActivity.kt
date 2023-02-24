@@ -1,9 +1,14 @@
 package com.honeyauto.chatGPTIP
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import com.honeyauto.chatGPTIP.databinding.ActivityCategoryBinding
+import java.util.*
 
 
 class CategoryActivity : AppCompatActivity() {
@@ -30,6 +35,26 @@ class CategoryActivity : AppCompatActivity() {
             )
             navController.navigate(action)
         }
+
+        //어떤 언어가 효과적인지 설명하는 텍스트뷰에 현제 나라위치 가져와서 번역해줌
+        val locale: Locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            applicationContext.resources.configuration.locales[0]
+        } else {
+            applicationContext.resources.configuration.locale
+        }
+
+        findViewById<TextView>(R.id.tv_example_effect).text =
+            try {
+                when (locale.country) {
+                    "KR" -> { "영문 일때 가장 효과적입니다" }
+                    "US" -> { "The best effect when used in English" }
+                    "JP" -> { "えいご いちばんこ うかてき" }
+                    "DE" -> { "Am effektivsten auf Englisch"}
+                    else -> { "The best effect when used in English" }
+                }
+            } catch (e: Exception) {
+                "The best effect when used in English"
+            }
 
         //언어선택 프래그먼트로 이동
         binding.btnLanguage.setOnClickListener {

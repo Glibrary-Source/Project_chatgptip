@@ -7,7 +7,7 @@
     tools:ignore="RtlSymmetry">
 
     <Button
-        android:id="@+id/btn_word"
+        android:id="@+id/btn_itemlanguage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -15,7 +15,7 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:padding="4dp"
-        tools:text="영어 실력을 향상시키기 위한 효과적인 전략은 무엇입니까?영어공부를하기위한문법"
+        tools:text="eNGLISH"
         android:background="@drawable/btn_effect1" />
 
 </LinearLayout>

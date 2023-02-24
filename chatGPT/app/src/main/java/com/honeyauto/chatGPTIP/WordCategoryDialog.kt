@@ -1,7 +1,6 @@
 package com.honeyauto.chatGPTIP
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,6 @@ class WordCategoryDialog : Fragment() {
         super.onCreate(savedInstanceState)
 
         overViewModel = ViewModelProvider(requireActivity()).get(OverViewModel::class.java)
-        MyGlobals.instance?.currentFragment = "WordCategoryDialog"
     }
 
     override fun onCreateView(
@@ -30,11 +28,9 @@ class WordCategoryDialog : Fragment() {
         binding = FragmentWordCategoryDialogBinding.inflate(inflater)
 
         val rcView = binding.rcCategorylist
-        val adapter = MyAdapter()
+        val adapter = CategoryDialogAdapter(MyGlobals.instance?.detailModel!!)
         rcView.adapter = adapter
         rcView.layoutManager = GridLayoutManager(requireContext(),2)
-
-        Log.d("Globaltest", MyGlobals.instance?.currentFragment.toString())
 
         return binding.root
     }

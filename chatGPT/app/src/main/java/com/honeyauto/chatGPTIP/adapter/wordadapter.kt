@@ -5,44 +5,24 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context.CLIPBOARD_SERVICE
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.honeyauto.chatGPTIP.*
-
+import com.honeyauto.chatGPTIP.model.DetailWordModel
 
 @SuppressLint("NotifyDataSetChanged")
-class WordListAdapter(private val keyWord: String) : RecyclerView.Adapter<WordListAdapter.WordListViewHolder>() {
+class WordListAdapter(keyword: String, detailModel: DetailWordModel) : RecyclerView.Adapter<WordListAdapter.WordListViewHolder>() {
 
-    private val fireStore = Firebase.firestore
-    var wordList: ArrayList<WordModel> = arrayListOf()
-    private var keyWordList = mutableListOf<String>()
+    var sentence : List<String>
 
     init {
-        fireStore.collection("catagori")
-            .addSnapshotListener { querySnapshot, _ ->
-                // ArrayList 비워줌
-                wordList.clear()
-
-                for (snapshot in querySnapshot!!.documents) {
-                    val item = snapshot.toObject(WordModel::class.java)
-                    if(item?.enkeyword == keyWord) {
-                        when(MyGlobals.instance!!.checkLanguage) {
-                            "kr" -> { keyWordList = item.krsentence as MutableList<String> }
-                            "en" -> { keyWordList = item.ensentence as MutableList<String> }
-                        }
-                    }
-                    Log.d("testDBF", keyWordList.toString())
-                }
-                notifyDataSetChanged()
-            }
+        sentence = try{ detailModel.categorylist!!["detail${MyGlobals.instance!!.checkLanguage}"]!![MyGlobals.instance!!.middleKeyword]!![keyword]!!.toList() }
+        catch (e:Exception) { listOf() }
+        notifyDataSetChanged()
     }
 
     class WordListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -52,19 +32,21 @@ class WordListAdapter(private val keyWord: String) : RecyclerView.Adapter<WordLi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordListViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.word_item, parent, false)
+            .inflate(R.layout.item_wordlist, parent, false)
         return WordListViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: WordListViewHolder, position: Int) {
-        holder.wordButtonView.text = keyWordList[position]
+        holder.wordButtonView.text = sentence[position]
         holder.wordButtonView.setOnClickListener {
             val clipboardManager = holder.clipboard
             val clipData = ClipData.newPlainText("copyText", holder.wordButtonView.text)
             clipboardManager.setPrimaryClip(clipData)
+
             Toast.makeText(holder.itemView.context,
                 if(MyGlobals.instance!!.checkLanguage == "kr"){"복사되었습니다"}else{"Copy"}
                 , Toast.LENGTH_SHORT).show()
+
             it.context.startActivity(
                 Intent(it.context, MainActivity::class.java)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT)
@@ -73,7 +55,7 @@ class WordListAdapter(private val keyWord: String) : RecyclerView.Adapter<WordLi
     }
 
     override fun getItemCount(): Int {
-        return keyWordList.size
+        return sentence.size
     }
 
 }

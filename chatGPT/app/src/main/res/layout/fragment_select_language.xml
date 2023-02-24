@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,29 +23,12 @@
             android:text="@string/selectLanguage"
             android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/btn_kr"
-            android:text="@string/kr"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_languageList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textSize="15sp"
-            android:layout_margin="5dp"
-            android:textColor="@color/black"
-            android:background="@drawable/btn_effect1" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:text="@string/hello_blank_fragment" />
 
-        <Button
-            android:id="@+id/btn_en"
-            android:text="@string/en"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_margin="5dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/btn_effect1" />
     </LinearLayout>
 </FrameLayout>

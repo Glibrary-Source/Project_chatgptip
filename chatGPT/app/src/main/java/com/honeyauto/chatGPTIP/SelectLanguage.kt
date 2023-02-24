@@ -1,22 +1,16 @@
 package com.honeyauto.chatGPTIP
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import com.honeyauto.chatGPTIP.adapter.SelectLanguageAdapter
 import com.honeyauto.chatGPTIP.databinding.FragmentSelectLanguageBinding
 
 class SelectLanguage : Fragment() {
 
     lateinit var binding: FragmentSelectLanguageBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        MyGlobals.instance?.currentFragment = "SelectLanguage"
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,19 +19,12 @@ class SelectLanguage : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSelectLanguageBinding.inflate(inflater)
 
-        binding.btnKr.setOnClickListener {
-            val action = SelectLanguageDirections.actionSelectLanguageToWordCategoryDialog("kr")
-            MyGlobals.instance?.checkLanguage = "kr"
-            findNavController().navigate(action)
-        }
-
-        binding.btnEn.setOnClickListener {
-            val action = SelectLanguageDirections.actionSelectLanguageToWordCategoryDialog("en")
-            MyGlobals.instance?.checkLanguage = "en"
-            findNavController().navigate(action)
-        }
-
-        Log.d("Globaltest", MyGlobals.instance?.currentFragment.toString())
+        val vLanguageRecycler = binding.rcLanguageList
+        val selectAdapter = SelectLanguageAdapter(
+            MyGlobals.instance?.languageList!!,
+            MyGlobals.instance?.buttontext!!
+        )
+        vLanguageRecycler.adapter = selectAdapter
 
         return binding.root
     }
